@@ -123,7 +123,7 @@ def get_uid_id(cookies):
 
 
 # 签到，返回True成功，否则失败
-def check(cookies, geo_api_info, id, uid):
+def check(cookies, geo_api_info):
     # Post的data，如果你是勇士可以尝试给这个打上注释，老谜语人了，看不懂ヾ(•ω•`)o
     data = {
         'sfzhux': '1',
@@ -182,8 +182,8 @@ def check(cookies, geo_api_info, id, uid):
         'cjfxsfhs': '',
         'bzxyy': '',
         'bzxyydesc': '',
-        'id': id,  # 打卡的ID，其实这个没影响的
-        'uid': uid,  # UID
+        #'id': id,  # 打卡的ID，其实这个没影响的
+        #'uid': uid,  # UID
         'date': time.strftime("%Y%m%d", time.localtime()),  # 打卡年月日一共8位
         'tw': '2',
         'sfcxtz': '0',
@@ -328,8 +328,8 @@ def main():
             cookies,message = new_login(stu_number, password, stu_name, imei, mobiletype)
 
             geo_api_info = get_address_info(longitude, latitude)
-            uid, id, message1 = get_uid_id(cookies)
-            result, message2 = check(cookies, geo_api_info, id, uid)
+            #uid, id, message1 = get_uid_id(cookies)
+            result, message2 = check(cookies, geo_api_info)
             message += message1 + message2
         except:
             print('发生错误，可能原因是打卡密码错误或者经纬度错误')
