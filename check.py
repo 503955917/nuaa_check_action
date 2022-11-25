@@ -310,9 +310,11 @@ def main():
     # with open("stu.json", 'r', encoding='UTF-8') as f:
     #     config = json.load(f)
 
-    imei = config['imei']
-    mobiletype = config['mobiletype']
+    #imei = config['imei']
+    #mobiletype = config['mobiletype']
     for student in config['students']:
+        imei = student['imei']
+        mobiletype = student['mobiletype']
         result = False  # 打卡结果，False表示没有打上
         stu_name = student['name']
         stu_number = student['stu_number']
@@ -326,16 +328,16 @@ def main():
         print('--------------------------------------')
         try:
             # cookies, message = login(stu_number, password)
-            # cookies,message = new_login(stu_number, password, stu_name, imei, mobiletype)
-            # print(cookies)
-            # message +=  cookies
+             cookies,message = new_login(stu_number, password, stu_name, imei, mobiletype)
+             print(cookies)
+             message +=  cookies
             
-            cookies = "eai-sess=fi4rjhr4pg9789bdpo36l20065"
+            # cookies = "eai-sess=fi4rjhr4pg9789bdpo36l20065"
             geo_api_info = get_address_info(longitude, latitude)
             #uid, id, message1 = get_uid_id(cookies)
             result, message2 = check(cookies, geo_api_info)
             #message += message1 + message2
-            message =  message2
+            message +=  message2
         except:
             print('发生错误，可能原因是打卡密码错误或者经纬度错误')
             message += '发生错误，可能原因是打卡密码错误或者经纬度错误'
