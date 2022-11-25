@@ -33,42 +33,6 @@ headers = {
 }
 
 
-# 登陆并且返回json形式的cookie，如果登陆失败返回空串
-# 先访问/uc/wap/login，获得eai-sess，然后带着她访问/uc/wap/login/check，获得UUkey
-def login(stu_number, password):
-    cookies = ''
-    for _ in range(try_times):
-        try:
-            time.sleep(delay)
-            response = requests.get(
-                'http://m.nuaa.edu.cn/uc/wap/login', cookies=cookies)
-            print('get login page:', response.status_code)
-
-            # cookies = response.headers['Set-Cookie']
-            # cookies = re.search(r'eai-sess=([a-zA-Z0-9]+)', cookies).group(0)
-            cookies = dict(response.cookies)
-
-            time.sleep(delay)
-            response = requests.get('http://m.nuaa.edu.cn/uc/wap/login/check', cookies=cookies,
-                                    data='username={}&password={}'.format(stu_number, password))
-            print('login...:', response.status_code)
-
-            # cookies2 = response.headers['Set-Cookie']
-            # cookies = cookies + '; ' + \
-            #     re.search(r'UUkey=([a-zA-Z0-9]+)', cookies2).group(0)
-            cookies.update(dict(response.cookies))
-
-            # print(cookies)
-            print(response.text)
-            return cookies, '登陆结果：' + response.text + '\n'
-        except:
-            print('login failed.')
-            traceback.print_exc()
-            pass
-    # raise Exception('lOGIN FAIL')
-    return {}, '登陆结果：login faild,请检查账号密码\n'
-
-
 # 使用统一身份认证登陆
 def new_login(login_id, login_password, stu_name, imei, mobiletype):
     '''
