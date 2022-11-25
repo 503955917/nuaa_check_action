@@ -328,10 +328,9 @@ def main():
         print('--------------------------------------')
         try:
             # cookies, message = login(stu_number, password)
-             cookies,message = new_login(stu_number, password, stu_name, imei, mobiletype)
-             print(cookies)
-             message +=  cookies
-            
+            cookies,message = new_login(stu_number, password, stu_name, imei, mobiletype)
+            print(cookies)
+            message +=  cookies
             # cookies = "eai-sess=fi4rjhr4pg9789bdpo36l20065"
             geo_api_info = get_address_info(longitude, latitude)
             #uid, id, message1 = get_uid_id(cookies)
