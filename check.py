@@ -326,7 +326,8 @@ def main():
         try:
             # cookies, message = login(stu_number, password)
             cookies,message = new_login(stu_number, password, stu_name, imei, mobiletype)
-
+            print(cookies)
+            message +=  cookies
             geo_api_info = get_address_info(longitude, latitude)
             #uid, id, message1 = get_uid_id(cookies)
             result, message2 = check(cookies, geo_api_info)
