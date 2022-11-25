@@ -320,7 +320,7 @@ def main():
         longitude = student['longitude']
         latitude = student['latitude']
         mail = student['mail']
-        cookies = student['cookies']
+        #cookies = student['cookies']
         message = ''
         message2 = ''
         print('--------------------------------------')
@@ -329,7 +329,7 @@ def main():
             # cookies,message = new_login(stu_number, password, stu_name, imei, mobiletype)
             # print(cookies)
             # message +=  cookies
-            # cookies = "eai-sess=fi4rjhr4pg9789bdpo36l20065"
+            cookies = "eai-sess=fi4rjhr4pg9789bdpo36l20065"
             geo_api_info = get_address_info(longitude, latitude)
             #uid, id, message1 = get_uid_id(cookies)
             result, message2 = check(cookies, geo_api_info)
